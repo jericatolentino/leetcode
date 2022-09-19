@@ -49,6 +49,34 @@ const anagram = (wA: string, wB: string): boolean => {
     return true;
 }
 
+const generateLetterAmountMap = (word: string) => {
+    const wordMap: { [key: string]: number } = {}
+
+    for (let i = 0; i < word.length; i++) {
+        const currentLetter = word.charAt(i)
+        const mappedLetter = wordMap[currentLetter]
+        wordMap[currentLetter] = mappedLetter ? mappedLetter + 1 : 1
+    }
+
+    return wordMap
+}
+
+const isAnagram2 = (wordA: string, wordB: string) => {
+    if (wordA.length !== wordB.length) return false
+
+    const wordAMap = generateLetterAmountMap(wordA)
+    const wordBMap = generateLetterAmountMap(wordB)
+
+    for (let key of Object.keys(wordBMap)) {
+        if (wordAMap[key] === wordBMap[key]) {
+            delete wordAMap[key]
+        }
+    }
+
+    return Object.keys(wordAMap).length === 0
+}
+
+
 console.log(anagram('finder', 'Friend'));
 
 /*
