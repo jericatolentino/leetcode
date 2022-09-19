@@ -10,6 +10,18 @@ const findTheVowels = (value: string) => {
     return count;
 }
 
+const findTheVowels2 = (input: string) => {
+    const vowels = ['a', 'e', 'i', 'o', 'u']
+    
+    let count = 0
+
+    for (let letter of input) {
+        if (vowels.includes(letter.toLowerCase())) count++
+    }
+
+    return count
+}
+
 console.log(findTheVowels("hellO"));
 console.log(findTheVowels("WhY"));
 
